@@ -16,13 +16,30 @@ class Solution {
         // Approach 2: HashMap + Odd/Even Counting
         // Useful if the number range wasn't fixed.
         // Time: O(n), Space: O(n)
-        Map<Integer, Integer> map = new HashMap<>();
-        for (int num : nums) map.put(num, map.getOrDefault(num, 0) + 1);
-        int pairs = 0, leftovers = 0;
-        for (int count : map.values()) {
-            pairs += count / 2;
-            leftovers += count % 2;
+        // Map<Integer, Integer> map = new HashMap<>();
+        // for (int num : nums) map.put(num, map.getOrDefault(num, 0) + 1);
+        // int pairs = 0, leftovers = 0;
+        // for (int count : map.values()) {
+        //     pairs += count / 2;
+        //     leftovers += count % 2;
+        // }
+        // return new int[]{pairs, leftovers};
+
+
+        // Approach 3: HashSet.
+        // Time: O(n), Space: O(n)
+        // Neat trick: a value in the set means it's unpaired.
+        Set<Integer> set = new HashSet<>();
+        int pairs = 0;
+        for (int num : nums) {
+            if (set.contains(num)) {
+                pairs++;
+                set.remove(num); // Pair formed
+            } 
+            else {
+                set.add(num);
+            }
         }
-        return new int[]{pairs, leftovers};
+        return new int[]{pairs, set.size()};
     }
 }
