@@ -26,20 +26,38 @@ class Solution {
         // return new int[]{pairs, leftovers};
 
 
-        // Approach 3: HashSet.
+        // Approach 3: HashSet
         // Time: O(n), Space: O(n)
         // Neat trick: a value in the set means it's unpaired.
-        Set<Integer> set = new HashSet<>();
-        int pairs = 0;
-        for (int num : nums) {
-            if (set.contains(num)) {
+        // Set<Integer> set = new HashSet<>();
+        // int pairs = 0;
+        // for (int num : nums) {
+        //     if (set.contains(num)) {
+        //         pairs++;
+        //         set.remove(num); // Pair formed
+        //     } 
+        //     else {
+        //         set.add(num);
+        //     }
+        // }
+        // return new int[]{pairs, set.size()};
+
+
+        // Approach 4: Sort + Scan
+        // Time: O(n log n), Space: O(1) or O(n) depending on the sorting algorithm
+        // Not optimal for this problem, but still valid.
+        Arrays.sort(nums);
+        int i = 0, pairs = 0;
+        while (i < nums.length - 1) {
+            if (nums[i] == nums[i + 1]) {
                 pairs++;
-                set.remove(num); // Pair formed
+                i += 2; // skip pair
             } 
             else {
-                set.add(num);
+                i++;
             }
         }
-        return new int[]{pairs, set.size()};
+        int leftovers = nums.length - pairs * 2;
+        return new int[]{pairs, leftovers};
     }
 }
