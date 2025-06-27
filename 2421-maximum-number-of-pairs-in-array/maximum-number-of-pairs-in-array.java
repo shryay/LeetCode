@@ -3,14 +3,14 @@ class Solution {
         // Approach 1: Frequency Array + Odd/Even Check (Best)
         // Why Best? Input size and number range (0 ≤ nums[i] ≤ 100) are small.
         // Time: O(n), Space: O(1) (fixed-size array)
-        // int[] freq = new int[101];
-        // for (int num : nums) freq[num]++;
-        // int pairs = 0, leftovers= 0;
-        // for (int count : freq) {
-        //     pairs += count / 2;
-        //     leftovers += count % 2;
-        // }
-        // return new int[]{pairs, leftovers};
+        int[] freq = new int[101];
+        for (int num : nums) freq[num]++;
+        int pairs = 0, leftovers= 0;
+        for (int count : freq) {
+            pairs += count / 2;
+            leftovers += count % 2;
+        }
+        return new int[]{pairs, leftovers};
 
 
         // Approach 2: HashMap + Odd/Even Counting
@@ -62,22 +62,22 @@ class Solution {
 
 
         // Noob Approach
-        int pairs = 0, leftovers = 0;
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = 0; j < nums.length; j++) {
-                if (i != j && nums[i] >= 0 && nums[j] >= 0 && nums[i] == nums[j]) {
-                    nums[i] = -1;
-                    nums[j] = -1;
-                    pairs++;
-                    break;
-                }
-            }
-        }
-        for (int i : nums) {
-            if (i >= 0) {
-                leftovers++;
-            }
-        }
-        return new int[]{pairs, leftovers};
+        // int pairs = 0, leftovers = 0;
+        // for (int i = 0; i < nums.length; i++) {
+        //     for (int j = 0; j < nums.length; j++) {
+        //         if (i != j && nums[i] >= 0 && nums[j] >= 0 && nums[i] == nums[j]) {
+        //             nums[i] = -1;
+        //             nums[j] = -1;
+        //             pairs++;
+        //             break;
+        //         }
+        //     }
+        // }
+        // for (int i : nums) {
+        //     if (i >= 0) {
+        //         leftovers++;
+        //     }
+        // }
+        // return new int[]{pairs, leftovers};
     }
 }
