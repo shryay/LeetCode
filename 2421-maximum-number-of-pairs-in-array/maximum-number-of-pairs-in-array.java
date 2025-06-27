@@ -46,18 +46,38 @@ class Solution {
         // Approach 4: Sort + Scan
         // Time: O(n log n), Space: O(1) or O(n) depending on the sorting algorithm
         // Not optimal for this problem, but still valid.
-        Arrays.sort(nums);
-        int i = 0, pairs = 0;
-        while (i < nums.length - 1) {
-            if (nums[i] == nums[i + 1]) {
-                pairs++;
-                i += 2; // skip pair
-            } 
-            else {
-                i++;
+        // Arrays.sort(nums);
+        // int i = 0, pairs = 0;
+        // while (i < nums.length - 1) {
+        //     if (nums[i] == nums[i + 1]) {
+        //         pairs++;
+        //         i += 2; // skip pair
+        //     } 
+        //     else {
+        //         i++;
+        //     }
+        // }
+        // int leftovers = nums.length - pairs * 2;
+        // return new int[]{pairs, leftovers};
+
+
+        // Noob Approach
+        int pairs = 0, leftovers = 0;
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = 0; j < nums.length; j++) {
+                if (i != j && nums[i] >= 0 && nums[j] >= 0 && nums[i] == nums[j]) {
+                    nums[i] = -1;
+                    nums[j] = -1;
+                    pairs++;
+                    break;
+                }
             }
         }
-        int leftovers = nums.length - pairs * 2;
+        for (int i : nums) {
+            if (i >= 0) {
+                leftovers++;
+            }
+        }
         return new int[]{pairs, leftovers};
     }
 }
