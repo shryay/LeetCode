@@ -1,18 +1,28 @@
 class Solution {
     public void sortColors(int[] nums) {
-        int p0 = 0, p2 = nums.length - 1;
-        for (int i = 0; i <= p2; ++i) {
-            while (nums[i] == 2 && i < p2) {
-                int temp = nums[i];
-                nums[i] = nums[p2];
-                nums[p2] = temp;
-                p2--;
-            }
-            while (nums[i] == 0 && i > p0) {
-                int temp = nums[i];
-                nums[i] = nums[p0];
-                nums[p0] = temp;
-                p0++;
+        // Approach-3 (Follow up) : O(n)
+        // T.C : O(n)
+        // S.C : O(1)
+        int n = nums.length;
+
+        int i = 0;   // denotes for 0
+        int j = 0;   // denotes for 1
+        int k = n - 1; // denotes for 2
+
+        while (j <= k) {
+            if (nums[j] == 1) {
+                j++;
+            } else if (nums[j] == 2) {
+                int temp = nums[j];
+                nums[j] = nums[k];
+                nums[k] = temp;
+                k--;
+            } else { // nums[j] == 0
+                int temp = nums[j];
+                nums[j] = nums[i];
+                nums[i] = temp;
+                i++;
+                j++;
             }
         }
     }
