@@ -15,7 +15,7 @@ class Solution {
         // return maxWater;
 
 
-        // Approach 2: Skip Smaller Heights Faster
+        // Approach 2: Skip Smaller Heights Faster (Efficient)
         int i = 0, j = height.length - 1;
         int maxWater = 0;
         while (i < j) {
