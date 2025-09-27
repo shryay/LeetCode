@@ -1,8 +1,9 @@
 class Solution {
     public int fib(int n) {
-        if (n == 0 || n == 1)
+        if(n <= 1)
         return n;
-        else
-        return fib(n - 1) + fib (n - 2);
+        int last = fib(n - 1);
+        int slast = fib(n - 2);
+        return last + slast;
     }
 }
