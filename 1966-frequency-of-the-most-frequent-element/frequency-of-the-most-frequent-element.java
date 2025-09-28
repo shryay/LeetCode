@@ -50,7 +50,35 @@ class Solution {
     //     return targetIdx - result + 1;
 
 
-        // Approach-2 (Using sliding window)
+        // // Approach-2 (Using sliding window)
+        // // T.C : O(nlogn)
+        // // S.C : O(1)
+        // Arrays.sort(nums);
+        
+        // int n = nums.length;
+        
+        // int result = 0;
+        
+        // int i = 0;
+        // long currSum = 0;
+        
+        // for (int j = 0; j < n; j++) {
+            
+        //     long target = nums[j];
+        //     currSum += nums[j];
+            
+        //     while ((j - i + 1) * target - currSum > k) {
+        //         currSum -= nums[i];
+        //         i++;
+        //     }
+            
+        //     result = Math.max(result, j - i + 1);
+            
+        // }
+        // return result;
+
+
+        // Approach-3 (Improved sliding window)
         // T.C : O(nlogn)
         // S.C : O(1)
         Arrays.sort(nums);
@@ -67,7 +95,7 @@ class Solution {
             long target = nums[j];
             currSum += nums[j];
             
-            while ((j - i + 1) * target - currSum > k) {
+            if ((j - i + 1) * target - currSum > k) {
                 currSum -= nums[i];
                 i++;
             }
