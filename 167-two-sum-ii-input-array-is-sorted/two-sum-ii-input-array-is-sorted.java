@@ -1,16 +1,15 @@
 class Solution {
     public int[] twoSum(int[] numbers, int target) {
-        // Optimal Approach using Two - Pointers technique (O(n) Time, O(1) Space)
-        int left = 0, right = numbers.length - 1;
-        while (left < right) {
-            int sum = numbers[left] + numbers[right];
+        int i = 0, j = numbers.length - 1;
+        while (i < j) {
+            int sum = numbers[i] + numbers[j];
             if (sum == target)
-            return new int[] {left + 1, right + 1};
+                return new int[]{i + 1, j + 1};
             else if (sum < target)
-            left++;
+                i++;
             else
-            right--;
+                j--;
         }
-        return new int[] {};
+        return new int[]{-1, -1};
     }
 }
