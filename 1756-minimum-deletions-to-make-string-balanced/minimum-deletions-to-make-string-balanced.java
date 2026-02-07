@@ -1,15 +1,17 @@
 class Solution {
     public int minimumDeletions(String s) {
         int length = s.length();
-        int minDeletions = 0;
-        int countB = 0;
-        for (int i = 0; i < length; ++i) {
-            if (s.charAt(i) == 'b') {
-                ++countB;
+        int[] dp = new int[length + 1];
+        int bCount = 0;
+        for (int i = 1; i <= length; i++) {
+            char currentChar = s.charAt(i - 1);
+            if (currentChar == 'b') {
+                dp[i] = dp[i - 1];
+                bCount++;
             } else {
-                minDeletions = Math.min(minDeletions + 1, countB);
+                dp[i] = Math.min(dp[i - 1] + 1, bCount);
             }
         }
-        return minDeletions;
+        return dp[length];
     }
 }
